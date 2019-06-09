@@ -1,4 +1,4 @@
-package com.trials.samplesocket
+package com.trials.samplesocket.network
 
 import android.util.Log
 import kotlinx.coroutines.*
@@ -7,9 +7,6 @@ import java.io.IOException
 import java.io.InputStreamReader
 import java.io.PrintWriter
 import java.net.ServerSocket
-import java.nio.Buffer
-import java.nio.CharBuffer
-import kotlin.coroutines.suspendCoroutine
 
 
 class MyServerSocket(private val port: Int) {
@@ -32,6 +29,10 @@ class MyServerSocket(private val port: Int) {
                 withContext(Dispatchers.IO) {
                     while (isActive) {
                         val mes = inputStream?.readLine()
+                        if (mes == null) {
+                            close()
+                            break
+                        }
                         Log.d(MyServerSocket::class.java.simpleName, "received -> $mes")
                         delay(1000L)
                     }

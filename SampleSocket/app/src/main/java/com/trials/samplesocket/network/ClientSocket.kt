@@ -1,12 +1,9 @@
-package com.trials.samplesocket
+package com.trials.samplesocket.network
 
 import android.util.Log
-import android.util.PrintWriterPrinter
 import kotlinx.coroutines.*
 import java.io.*
-import java.net.InetAddress
 import java.net.Socket
-import java.net.SocketAddress
 
 class ClientSocket(private val ip: String, private val port: Int) {
 
